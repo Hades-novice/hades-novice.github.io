@@ -23,3 +23,26 @@
 .demo-chapters button:hover,.demo-chapters button:focus-visible{background:#e2e9dc}
 .demo-chapters span{font-weight:600;margin-inline-end:.22rem}
 .project-demo-link{margin-inline-start:1rem}
+
+.advisor-link{text-decoration:underline;text-underline-offset:.19em}
+.demo-cases{max-width:920px;margin:0 auto clamp(2rem,5vw,4rem)}
+.case-flow,.vial-timeline{display:grid;list-style:none;padding:0;gap:.6rem}
+.case-flow{grid-template-columns:repeat(5,1fr);counter-reset:flow}
+.case-flow li{counter-increment:flow;padding:.75rem;background:#eaf0e6;border-radius:8px}
+.case-flow li::before{content:counter(flow,decimal-leading-zero);display:block;font-size:.77rem;color:#405a4b}
+.case-study{margin:1.2rem 0;padding:clamp(.9rem,3vw,1.5rem);border:1px solid #d2dbd1;border-radius:12px}
+.case-overview{margin:1.2rem 0}.case-overview img{display:block;max-width:100%;height:auto;border:1px solid #d2dbd1;border-radius:8px}.case-overview figcaption{margin-top:.35rem;font-size:.88rem}
+.case-study h3,.case-study h4{margin:0}
+.case-study li p{margin:.3rem 0 .65rem}
+.vial-timeline{grid-template-columns:repeat(3,1fr)}
+.vial-timeline img{display:block;width:100%;height:auto;max-height:170px;object-fit:cover;border-radius:8px;margin-bottom:.6rem}
+.case-plan{display:grid;grid-template-columns:1.4fr 1fr;gap:1.3rem;align-items:start}
+.case-plan ol{margin:0;padding-inline-start:1.25rem}
+.case-plate{margin:0;padding:1rem;background:#f0f3ee;border-radius:10px}
+.case-wells{display:grid;grid-template-columns:repeat(4,1fr);gap:.45rem}
+.case-wells span{display:grid;place-items:center;aspect-ratio:1;border-radius:50%;font-size:.77rem;color:#192d24}
+.case-legend{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.3rem;font-size:.8rem}
+.case-legend i{display:inline-block;width:.65rem;height:.65rem;border-radius:50%;margin-inline-end:.2rem}
+.case-plate figcaption{margin-top:.5rem}
+.case-plate .repeat{background:#b8d4aa}.case-plate .explore{background:#bfd6ee}.case-plate .retained{background:#d8dbdb}
+@media(max-width:640px){.case-flow{grid-template-columns:repeat(2,1fr)}.vial-timeline{grid-template-columns:1fr}.vial-timeline img{max-width:260px}.case-plan{grid-template-columns:1fr}}

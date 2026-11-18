@@ -136,22 +136,22 @@ window.PORTFOLIO={
       "date": "2026.04 —",
       "en": {
         "title": "Peking University Shenzhen Graduate School",
-        "text": "Joint research training · School of Advanced Materials<br>Research advisor: Ruqiang Zou"
+        "text": "Joint research training · School of Advanced Materials<br>Research advisor: <a class=\"advisor-link\" href=\"https://sam.pkusz.edu.cn/info/1027/1251.htm\" target=\"_blank\" rel=\"noopener noreferrer\">Ruqiang Zou</a>"
       },
       "zh": {
         "title": "北京大学深圳研究生院",
-        "text": "新材料学院 · 联合培养<br>合作导师：邹如强"
+        "text": "新材料学院 · 联合培养<br>合作导师：<a class=\"advisor-link\" href=\"https://sam.pkusz.edu.cn/info/1027/1251.htm\" target=\"_blank\" rel=\"noopener noreferrer\">邹如强</a>"
       }
     },
     {
       "date": "2024 — 2027",
       "en": {
         "title": "Chongqing University of Science and Technology",
-        "text": "Master’s in Electronic Information · In progress<br>Research advisor: Guorong Chen"
+        "text": "Master’s in Electronic Information · In progress<br>Research advisor: <a class=\"advisor-link\" href=\"https://znxy.cqust.edu.cn/info/1087/2893.htm\" target=\"_blank\" rel=\"noopener noreferrer\">Guorong Chen</a>"
       },
       "zh": {
         "title": "重庆科技大学",
-        "text": "电子信息硕士研究生 · 人工智能研究方向<br>导师：陈国荣"
+        "text": "电子信息硕士研究生 · 人工智能研究方向<br>导师：<a class=\"advisor-link\" href=\"https://znxy.cqust.edu.cn/info/1087/2893.htm\" target=\"_blank\" rel=\"noopener noreferrer\">陈国荣</a>"
       }
     },
     {
