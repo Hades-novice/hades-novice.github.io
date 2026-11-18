@@ -63,49 +63,16 @@ function deepAssembleDemo(){
     <p class="note">${zh?'我独立开发智能体与决策工作流，实验设备集成由团队同学完成。':'I independently developed the agent and decision workflow. Teammates integrated the experimental hardware.'}</p>
   </section>`;
 }
-function deepAssembleCases(){
-  const bi=(zh,en)=>lang==='zh'?zh:en;
-  const workflow=[
-    bi('采集图像与条件','Capture images and conditions'),
-    bi('识别与时序复核','Classify and review history'),
-    bi('逐瓶决策','Decide per vial'),
-    bi('规划下一轮','Plan the next round'),
-    bi('执行回执入账','Record execution feedback')
-  ];
-  const stages=[
-    [bi('首次析出候选','First precipitation candidate'),bi('模型标出候选帧，记录照片与时间。','The model flags a frame and records the image and time.')],
-    [bi('用历史照片复核','Review across observations'),bi('对照前后图像和日志，分别判断形貌与干燥状态。','Compare images and logs across time, assessing morphology and dryness separately.')],
-    [bi('依据规则提出建议','Recommend an action'),bi('满足规则时可提出收获建议，执行结果随后由回执写入。','When the evidence meets the rules, the agent can request harvest. An execution receipt records what happened.')]
-  ];
-  const plan=[
-    [bi('设置约束','Set constraints'),bi('指定板数、可用条件和各类实验配额。','Set the plate count, feasible conditions, and trial allocations.')],
-    [bi('生成排布草案','Draft a layout'),bi('LLM 根据日志审查证据并提出建议，程序按约束分配孔位并校验冲突。','The LLM reviews the logs and proposes options. The program allocates wells under constraints and checks for conflicts.')],
-    [bi('锁定、导出与回执','Lock, export, and record'),bi('锁定排布并导出执行表。执行端回传结果，系统据此更新瓶次台账。','Lock the layout and export it for execution. The system updates the vial ledger from execution feedback.')]
-  ];
-  const plate=['repeat','repeat','explore','retained','repeat','explore','explore','retained','repeat','repeat','explore','retained'];
-  const legend={repeat:bi('复验','Repeat'),explore:bi('探索','Explore'),retained:bi('保留旧瓶','Retain vial')};
-  return `<section class="demo-cases" id="workflow" aria-labelledby="workflow-title">
-    <h2 id="workflow-title">${bi('系统怎样完成一轮实验','How the system runs an experiment cycle')}</h2>
-    <ol class="case-flow">${workflow.map(item=>`<li>${item}</li>`).join('')}</ol>
-    <p class="note">${bi('执行后，新图像和回执回到同一条实验记录。','New images and execution receipts feed back into the same experiment record.')}</p>
-    <figure class="case-overview"><img src="assets/deepassemble-well-overview.jpg" loading="lazy" width="765" height="309" alt="${bi('孔板界面节选，按孔位显示生长状态','Excerpt from the plate dashboard showing growth state per well')}"><figcaption>${bi('孔板状态总览节选。系统支持从全局状态进入单瓶时间线。','Plate dashboard excerpt. Each well opens a timeline for one vial.')}</figcaption></figure>
-    <article class="case-study" id="vial-case">
-      <h3>${bi('这一瓶为什么建议收获？','What supports a harvest recommendation?')}</h3>
-      <p>${bi('系统从 12 块孔板、144 个孔位的状态总览定位到单瓶，再按时间核对同一瓶的观测。这里用报告中的图像片段说明复核流程。','The overview covers 12 plates and 144 wells. Opening a well brings up that vial’s observations in order. These images from the project report illustrate the review process.')}</p>
-      <ol class="vial-timeline">${stages.map(([title,description],i)=>`<li><img src="assets/deepassemble-well-${i+1}.jpg" loading="lazy" width="140" height="122" alt="${bi('同一瓶的第 '+(i+1)+' 张代表观测图','Representative observation '+(i+1)+' of the same vial')}"><h4>${title}</h4><p>${description}</p></li>`).join('')}</ol>
-      <p class="note">${bi('记录分为三类：模型判断、人工复核、实际操作回执。图像依次展示同一瓶的观测，最后一张照片本身并不代表实际收获。','The system stores model judgments, human review, and execution receipts separately. The photos are observations of one vial; the last image alone does not document a harvest.')}</p>
-    </article>
-    <article class="case-study" id="planning-case">
-      <h3>${bi('下一轮为什么这样排？','Why is the next round arranged this way?')}</h3>
-      <div class="case-plan"><ol>${plan.map(([title,description])=>`<li><h4>${title}</h4><p>${description}</p></li>`).join('')}</ol>
-      <figure class="case-plate"><div class="case-wells" aria-hidden="true">${plate.map((type,i)=>`<span class="${type}">${String.fromCharCode(65+Math.floor(i/4))}${i%4+1}</span>`).join('')}</div><figcaption>${bi('单块孔板示意','Illustrative plate layout')} <span class="case-legend">${Object.entries(legend).map(([type,label])=>`<span><i class="${type}" aria-hidden="true"></i>${label}</span>`).join('')}</span></figcaption></figure></div>
-    </article>
-    <details class="accordion"><summary>${bi('技术细节：如何保证记录能追溯','Technical details: keeping records traceable')}</summary>
-      <p>${bi('视觉模型先识别生长状态，LLM 再对照前后图像和日志复核冲突，仍不确定的样本可交人工复核。延续观察旧瓶时，保留原始开始时间；收到实际换瓶回执后，才创建新瓶次。','The vision model provides initial classifications. The LLM cross-checks conflicting images and logs, and uncertain cases can go to human review. Continued observation preserves the original start time; a confirmed replacement starts a new vial record.')}</p>
-    </details>
+function deepAssembleOverview(){
+  const zh=lang==="zh";
+  return `<section class="workflow-overview" id="workflow" aria-labelledby="workflow-title">
+    <h2 id="workflow-title">${zh?"单晶生长与优化闭环":"Crystal growth and optimization workflow"}</h2>
+    <a href="assets/deepassemble-workflow-overview.jpg" target="_blank" rel="noopener noreferrer" aria-label="${zh?"打开高清总览图":"Open the full-resolution workflow diagram"}">
+      <img src="assets/deepassemble-workflow-overview.jpg" width="2399" height="1350" loading="lazy" alt="${zh?"DeepAssemble 流程：数据接入、识别与复核、生长日志、生长决策、下一轮规划、锁定与执行。执行回执进入下一轮流程。":"DeepAssemble workflow: data intake, recognition and review, growth logs, growth decisions, next-round planning, and execution. Execution feedback feeds the next cycle."}">
+    </a>
   </section>`;
 }
-function detail(){const p=project,c=text(p),i=data.projects.indexOf(p),prev=data.projects[(i+data.projects.length-1)%data.projects.length],next=data.projects[(i+1)%data.projects.length];return `<main id="main" class="wrap"><div class="detail-head"><div class="breadcrumb"><a href="${href('','work')}">← ${t().back}</a> / ${p.name}</div><div class="eyebrow">${c.meta}</div><h1>${p.name}</h1><div class="detail-subtitle">${c.subtitle}</div><p class="detail-intro">${c.intro}</p><div class="detail-meta"><div><span>${t().role}</span><p>${c.role}</p></div><div><span>${t().context}</span><p>${c.context}</p></div><div><span>${t().status}</span><p>${c.status}</p></div></div></div>${p.id==='deepassemble'?deepAssembleDemo()+deepAssembleCases():visual(p,'detail-visual')}<div class="detail-layout"><aside class="detail-aside" aria-label="${lang==='zh'?'页面目录':'On this page'}"><a href="#overview">01 / ${t().overview}</a><a href="#method">02 / ${t().method}</a><a href="#contribution">03 / ${t().contribution}</a><a href="#validation">04 / ${t().validation}</a><a href="#technical">05 / ${t().technical}</a>${p.doi?`<a class="text-link" href="${p.doi}" target="_blank" rel="noopener noreferrer">${t().paper}</a>`:''}</aside><div class="detail-body"><section id="overview"><h2>${t().overview}</h2><p>${c.overview}</p><div class="tags">${p.tags.map(x=>`<span class="tag">${x}</span>`).join('')}</div></section><section id="method"><h2>${t().method}</h2><div class="method-nav" role="tablist" aria-label="${t().method}">${c.steps.map((s,j)=>`<button role="tab" data-step="${j}" id="step-${j}" aria-controls="method-panel" aria-selected="${j===step}" class="${j===step?'active':''}"><b>0${j+1}</b>${s.title}</button>`).join('')}</div><div class="method-content" id="method-panel" role="tabpanel" aria-labelledby="step-${step}">${methodContent()}</div><p class="note">${t().workflowNote}</p></section><section id="contribution"><h2>${t().contribution}</h2><div class="contribution"><ul>${c.contributions.map(x=>`<li>${x}</li>`).join('')}</ul></div></section><section id="validation"><h2>${t().validation}</h2><div class="outcome-grid">${c.outcomes.map(o=>`<div class="outcome"><div class="big">${o.big}</div><p>${o.text}</p></div>`).join('')}</div></section><section id="technical"><h2>${t().technical}</h2>${c.technical.map((o,j)=>`<details class="accordion" ${j===0?'open':''}><summary>${o.title}</summary><p>${o.text}</p></details>`).join('')}</section><div class="next-project"><a href="${href(prev.id+'.html')}">← ${prev.name}</a><a href="${href(next.id+'.html')}">${next.name} →</a></div></div></div></main>`}
+function detail(){const p=project,c=text(p),i=data.projects.indexOf(p),prev=data.projects[(i+data.projects.length-1)%data.projects.length],next=data.projects[(i+1)%data.projects.length];return `<main id="main" class="wrap"><div class="detail-head"><div class="breadcrumb"><a href="${href('','work')}">← ${t().back}</a> / ${p.name}</div><div class="eyebrow">${c.meta}</div><h1>${p.name}</h1><div class="detail-subtitle">${c.subtitle}</div><p class="detail-intro">${c.intro}</p><div class="detail-meta"><div><span>${t().role}</span><p>${c.role}</p></div><div><span>${t().context}</span><p>${c.context}</p></div><div><span>${t().status}</span><p>${c.status}</p></div></div></div>${p.id==='deepassemble'?deepAssembleDemo()+deepAssembleOverview():visual(p,'detail-visual')}<div class="detail-layout"><aside class="detail-aside" aria-label="${lang==='zh'?'页面目录':'On this page'}"><a href="#overview">01 / ${t().overview}</a><a href="#method">02 / ${t().method}</a><a href="#contribution">03 / ${t().contribution}</a><a href="#validation">04 / ${t().validation}</a><a href="#technical">05 / ${t().technical}</a>${p.doi?`<a class="text-link" href="${p.doi}" target="_blank" rel="noopener noreferrer">${t().paper}</a>`:''}</aside><div class="detail-body"><section id="overview"><h2>${t().overview}</h2><p>${c.overview}</p><div class="tags">${p.tags.map(x=>`<span class="tag">${x}</span>`).join('')}</div></section><section id="method"><h2>${t().method}</h2><div class="method-nav" role="tablist" aria-label="${t().method}">${c.steps.map((s,j)=>`<button role="tab" data-step="${j}" id="step-${j}" aria-controls="method-panel" aria-selected="${j===step}" class="${j===step?'active':''}"><b>0${j+1}</b>${s.title}</button>`).join('')}</div><div class="method-content" id="method-panel" role="tabpanel" aria-labelledby="step-${step}">${methodContent()}</div><p class="note">${t().workflowNote}</p></section><section id="contribution"><h2>${t().contribution}</h2><div class="contribution"><ul>${c.contributions.map(x=>`<li>${x}</li>`).join('')}</ul></div></section><section id="validation"><h2>${t().validation}</h2><div class="outcome-grid">${c.outcomes.map(o=>`<div class="outcome"><div class="big">${o.big}</div><p>${o.text}</p></div>`).join('')}</div></section><section id="technical"><h2>${t().technical}</h2>${c.technical.map((o,j)=>`<details class="accordion" ${j===0?'open':''}><summary>${o.title}</summary><p>${o.text}</p></details>`).join('')}</section><div class="next-project"><a href="${href(prev.id+'.html')}">← ${prev.name}</a><a href="${href(next.id+'.html')}">${next.name} →</a></div></div></div></main>`}
 function interview(){
 const zh=lang==='zh';let content='';
 if(slide===0)content=`<div><div class="eyebrow">${t().eyebrow}</div><h1>${zh?'胡鸿<br>科研与工程经历':'Hong Hu<br>Research & engineering'}</h1><p>${zh?'重庆科技大学 · 电子信息硕士研究生<br>北京大学深圳研究生院 · 新材料学院联培':'Master’s student · Electronic Information, CQUST<br>Joint research training · PKU Shenzhen Graduate School'}</p><div class="tags"><span class="tag">AI for Science</span><span class="tag">Scientific agents</span><span class="tag">Time-series learning</span></div><p>${zh?'预计 2027 年硕士毕业':'Expected master’s completion: 2027'}</p></div><img class="slide-portrait" src="assets/portrait.jpg" alt="${t().name}">`;
