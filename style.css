@@ -11,3 +11,15 @@
 .hero-art{align-items:center;justify-content:center;min-height:390px}.portrait-panel{margin:0 auto;width:76%;height:370px}.portrait-panel img{object-position:55% 29%}.portrait-panel:before{left:50%;transform:translateX(-50%)}.art-caption{display:none}.fact .n{font:17px/1.4 var(--sans);font-weight:550;margin-bottom:7px}.fact{display:block;padding:0 28px}.fact .label{font-size:12px}.contact-buttons,.footer-links{flex-wrap:wrap}.contact-buttons{row-gap:8px}@media(max-width:700px){.hero-art{min-height:310px}.portrait-panel{height:305px;width:78%;max-width:290px}.fact{padding:0 10px}.fact .n{font-size:12px}.fact .label{font-size:10px}.fact-strip{gap:0}}
 /* Interview: future research interests (PHASE Lab). */
 .slide-future{grid-template-columns:1.05fr 1fr;gap:44px}.slide-future h1{font-size:clamp(30px,3.2vw,44px);line-height:1.2;margin:14px 0 18px}.slide-future .future-question{font-size:16px;line-height:1.7;color:var(--green)}.slide-future ul{font-size:14px;line-height:1.7;margin:15px 0 0;padding-left:18px}.slide-future li{margin:12px 0}.slide-future strong{color:var(--ink);font-weight:600}.future-plan{background:#edf2e9;border:1px solid var(--line);padding:24px 26px;border-radius:6px}.future-plan-heading{font-size:10px;letter-spacing:.09em;color:var(--green);margin-bottom:20px}.future-stage{display:grid;grid-template-columns:27px 1fr;gap:12px;align-items:start}.future-stage>span{font:18px/1.5 var(--serif);color:var(--green)}.future-stage h2{font:600 16px/1.5 var(--sans);margin:0 0 4px}.slide-future .future-stage p{font-size:13px;line-height:1.7}.future-connector{padding-left:9px;color:#7b967b;line-height:1.5;margin:5px 0}.slide-future .future-fit{border-top:1px solid #cbd7c7;margin:18px 0 0;padding-top:12px;font-size:11px;line-height:1.8}.future-source{display:block;font-size:10px;line-height:1.6;color:var(--green);margin-top:12px;text-decoration:underline;text-underline-offset:3px}@media(max-width:1000px){.slide-future{gap:26px}.future-plan{padding:20px}}@media(max-width:700px){.slide-future h1{font-size:32px}.slide-future .future-question{font-size:15px}.future-plan{padding:20px}.future-stage h2{font-size:16px}.slide-future ul{font-size:14px}}
+
+
+.project-demo{max-width:920px;margin:0 auto clamp(2rem,5vw,4rem);scroll-margin-top:6rem}
+.demo-heading{display:flex;align-items:baseline;justify-content:space-between;gap:1rem}
+.demo-heading h2{margin:0}
+.demo-heading span,.demo-chapters span{font-variant-numeric:tabular-nums}
+.project-demo video{display:block;width:100%;height:auto;aspect-ratio:16/9;background:#151e23;border-radius:12px}
+.demo-chapters{display:flex;flex-wrap:wrap;gap:.5rem;margin:.8rem 0}
+.demo-chapters button{font:inherit;font-size:.88rem;cursor:pointer;color:inherit;background:transparent;border:1px solid currentColor;border-radius:6px;padding:.35rem .65rem}
+.demo-chapters button:hover,.demo-chapters button:focus-visible{background:#e2e9dc}
+.demo-chapters span{font-weight:600;margin-inline-end:.22rem}
+.project-demo-link{margin-inline-start:1rem}
