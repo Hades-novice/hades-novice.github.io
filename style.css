@@ -25,12 +25,25 @@
 .project-demo-link{margin-inline-start:1rem}
 
 .advisor-link{text-decoration:underline;text-underline-offset:.19em}
-.workflow-overview{max-width:1080px;margin:0 auto clamp(2rem,5vw,4rem);scroll-margin-top:6rem}
-.workflow-overview a{display:block}
-.workflow-overview img{display:block;width:100%;height:auto;border:1px solid #d2dbd1;border-radius:12px}
-.workflow-disclosure{border:1px solid #d2dbd1;border-radius:12px;padding:.8rem 1rem}
-.workflow-disclosure summary{cursor:pointer;font-weight:600}
-.workflow-disclosure summary:focus-visible{outline:2px solid #405a4b;outline-offset:4px;border-radius:3px}
-.workflow-disclosure a{margin-top:.8rem}
+
+.detail-body .workflow-overview{margin:0 0 clamp(1.65rem,3vw,2.6rem);padding:0 0 .85rem;border-bottom:1px solid #dadeD6;scroll-margin-top:6rem}
+.workflow-disclosure summary{display:flex;align-items:center;justify-content:space-between;gap:.7rem;cursor:pointer;list-style:none;min-height:44px}
+.workflow-disclosure summary::-webkit-details-marker{display:none}
+.workflow-disclosure summary h2{margin:0;font-size:clamp(1.04rem,2vw,1.4rem);line-height:1.2}
+.workflow-disclosure summary:focus-visible,.workflow-track:focus-visible{outline:2px solid #405a4b;outline-offset:4px;border-radius:8px}
+.workflow-toggle{display:inline-flex;align-items:center;gap:.35rem;flex:none;padding:.36rem .72rem;background:#e8ece5;border-radius:999px;color:#263e32;font-size:.84rem;font-weight:600}
+.workflow-disclosure summary:hover .workflow-toggle{background:#dce4d9}
+.workflow-chevron{display:inline-block;line-height:1}
 .workflow-hide,.workflow-disclosure[open] .workflow-show{display:none}
 .workflow-disclosure[open] .workflow-hide{display:inline}
+.workflow-disclosure[open] .workflow-chevron{transform:rotate(180deg)}
+.workflow-gallery{margin:.8rem 0 .15rem;background:#fff;border:1px solid #e2e6df;border-radius:15px;overflow:hidden}
+.workflow-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-inline:contain;scrollbar-width:none}
+.workflow-track::-webkit-scrollbar{display:none}
+.workflow-track figure{flex:0 0 100%;min-width:0;margin:0;scroll-snap-align:start}
+.workflow-track a,.workflow-track img{display:block;width:100%}
+.workflow-track img{height:auto;aspect-ratio:16/9;object-fit:contain}
+.workflow-track figcaption{text-align:center;padding:.45rem .65rem .15rem;font-size:.89rem;color:#43524a}
+.workflow-controls{display:flex;align-items:center;justify-content:center;gap:.7rem;padding:0 .7rem .55rem;color:#43524a;font-size:.85rem;font-variant-numeric:tabular-nums}
+.workflow-controls button{border:0;background:#edf0eb;border-radius:50%;width:44px;height:44px;color:#263e32;font:inherit;font-size:1.35rem;line-height:1;cursor:pointer}
+.workflow-controls button:disabled{opacity:.42;cursor:default}
