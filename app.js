@@ -66,9 +66,12 @@ function deepAssembleDemo(){
 function deepAssembleOverview(){
   const zh=lang==='zh';
   const slides=[
-    ['deepassemble-workflow-overview.jpg',2399,1350,'闭环总览','Workflow overview'],
-    ['deepassemble-workflow-evidence.jpg',1350,760,'数据、判断与执行','Data, decisions, and execution'],
-    ['deepassemble-workflow-planning.jpg',1350,760,'下一轮实验规划','Planning the next round']
+    ['deepassemble-workflow-overview.jpg',2399,1350,'闭环总览','Workflow overview','从图像采集、识别与复核，到实验规划和执行回执。','Follow images from capture and review through experiment planning and execution feedback.'],
+    ['deepassemble-workflow-algorithms.jpg',1350,759,'算法如何做决策','How the agent makes decisions','视觉模型先识别晶体状态，时序复核补充证据，再由规则判断是否建议收获或换瓶。','Vision estimates crystal state, review adds evidence from earlier observations, and rules guide harvest or replacement recommendations.'],
+    ['deepassemble-workflow-evidence.jpg',1350,760,'数据、判断与执行','Data, decisions, and execution','用轮次、孔位和瓶次关联记录，分别保留模型判断、人工复核与执行回执。','Link records by round, well, and vial version, preserving model judgments, human reviews, and execution receipts separately.'],
+    ['deepassemble-workflow-dashboard.jpg',1350,760,'孔板状态总览','Plate dashboard','在 12 块孔板、144 个孔位中筛查状态，再进入单孔查看图像与历史。','Scan 144 wells across 12 plates, then open an individual well to inspect its images and history.'],
+    ['deepassemble-workflow-vial.jpg',1350,760,'单瓶时序复核','Reviewing one vial over time','按时间对比同一瓶的照片，复核首次析出候选和后续状态，收获以执行回执为准。','Compare photos of the same vial over time, review the first precipitation candidate and later states, and use the receipt to confirm harvest.'],
+    ['deepassemble-workflow-planning.jpg',1350,760,'下一轮实验规划','Planning the next round','把实验约束转换成孔位排布，分配复验、探索和保留旧瓶，再锁定导出。','Turn experimental constraints into a plate layout for repeat trials, exploration, and retained vials, then lock and export it.']
   ];
   return `<section class="workflow-overview" id="workflow" aria-labelledby="workflow-title">
     <details class="workflow-disclosure">
@@ -77,7 +80,7 @@ function deepAssembleOverview(){
         <span class="workflow-toggle"><span class="workflow-show">${zh?'查看详情':'View details'}</span><span class="workflow-hide">${zh?'收起详情':'Hide details'}</span><span class="workflow-chevron" aria-hidden="true">⌄</span></span>
       </summary>
       <div class="workflow-gallery">
-        <div class="workflow-track" id="workflow-track" tabindex="0" aria-label="${zh?'实验流程图集，可左右滑动':'Workflow gallery, scroll horizontally'}">${slides.map(([file,w,h,cn,en])=>`<figure><a href="assets/${file}" target="_blank" rel="noopener noreferrer" aria-label="${zh?'查看大图：'+cn:'Open full-size image: '+en}"><img src="assets/${file}" width="${w}" height="${h}" loading="lazy" decoding="async" alt="${zh?cn:en}"></a><figcaption>${zh?cn:en}</figcaption></figure>`).join('')}</div>
+        <div class="workflow-track" id="workflow-track" tabindex="0" aria-label="${zh?'实验流程图集，可左右滑动':'Workflow gallery, scroll horizontally'}">${slides.map(([file,w,h,cn,en,descCn,descEn])=>`<figure><a href="assets/${file}" target="_blank" rel="noopener noreferrer" aria-label="${zh?'查看大图：'+cn:'Open full-size image: '+en}"><img src="assets/${file}" width="${w}" height="${h}" loading="lazy" decoding="async" alt="${zh?cn:en}"></a><figcaption><strong>${zh?cn:en}</strong><span>${zh?descCn:descEn}</span></figcaption></figure>`).join('')}</div>
         <div class="workflow-controls"><button type="button" data-workflow-prev aria-controls="workflow-track" aria-label="${zh?'上一张':'Previous slide'}" disabled>‹</button><span data-workflow-index aria-live="polite">1 / ${slides.length}</span><button type="button" data-workflow-next aria-controls="workflow-track" aria-label="${zh?'下一张':'Next slide'}">›</button></div>
       </div>
     </details>

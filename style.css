@@ -44,6 +44,8 @@
 .workflow-track a,.workflow-track img{display:block;width:100%}
 .workflow-track img{height:auto;aspect-ratio:16/9;object-fit:contain}
 .workflow-track figcaption{text-align:center;padding:.45rem .65rem .15rem;font-size:.89rem;color:#43524a}
+.workflow-track figcaption strong,.workflow-track figcaption span{display:block}
+.workflow-track figcaption span{max-width:62ch;margin:.18rem auto 0;line-height:1.45}
 .workflow-controls{display:flex;align-items:center;justify-content:center;gap:.7rem;padding:0 .7rem .55rem;color:#43524a;font-size:.85rem;font-variant-numeric:tabular-nums}
 .workflow-controls button{border:0;background:#edf0eb;border-radius:50%;width:44px;height:44px;color:#263e32;font:inherit;font-size:1.35rem;line-height:1;cursor:pointer}
 .workflow-controls button:disabled{opacity:.42;cursor:default}
