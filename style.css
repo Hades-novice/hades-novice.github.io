@@ -28,3 +28,9 @@
 .workflow-overview{max-width:1080px;margin:0 auto clamp(2rem,5vw,4rem);scroll-margin-top:6rem}
 .workflow-overview a{display:block}
 .workflow-overview img{display:block;width:100%;height:auto;border:1px solid #d2dbd1;border-radius:12px}
+.workflow-disclosure{border:1px solid #d2dbd1;border-radius:12px;padding:.8rem 1rem}
+.workflow-disclosure summary{cursor:pointer;font-weight:600}
+.workflow-disclosure summary:focus-visible{outline:2px solid #405a4b;outline-offset:4px;border-radius:3px}
+.workflow-disclosure a{margin-top:.8rem}
+.workflow-hide,.workflow-disclosure[open] .workflow-show{display:none}
+.workflow-disclosure[open] .workflow-hide{display:inline}
